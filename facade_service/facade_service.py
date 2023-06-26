@@ -18,7 +18,7 @@ def forward_get():
             "msg":flask.request.json.get('msg')
         }
     logs_response = requests.get(
-        "{msg}/logging".format(msg=logs_url),
+        "{msg}/logging-service".format(msg=logs_url),
         json = uuid_make
     )
     print('1. Received response to GET from logging service:', logs_response.content)    
@@ -40,19 +40,20 @@ def forward_post():
             "msg":flask.request.json.get('msg')
         }
         logs_response = requests.post(
-            "{msg}/logging".format(msg=logs_url),
+            "{msg}/logging-service".format(msg=logs_url),
            json = uuid_make
         )
         status = logs_response.status_code
         print('1. Received response to POST from logging service:', status)
 
+        #connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
         queue = get_kv(consul_client, "queue")
         channel = connection.channel()
         channel.queue_declare(queue=queue)
 
         channel.basic_publish(exchange='', routing_key=queue, body=flask.request.json.get('msg'))
         print(f" [x] Sent to message queue: %s"%flask.request.json.get('msg'))
-        connection.close()
+        #connection.close()
 
         return app.response_class()
 
@@ -88,7 +89,8 @@ def discover_service(name):
 
 
 def random_logging_url():
-    return f"http://{discover_service('logging_service')}/logging-service"
+    return f"http://{discover_service('logging_service')}/"
+    #return f"http://{discover_service('logging_service')}/logging-service"
 
 
 def random_message_url():
@@ -118,3 +120,4 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0",
             port=port,
             debug=True)
+    connection.close()
