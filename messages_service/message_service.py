@@ -8,6 +8,7 @@ msg = []
 msg_lock = threading.Lock()
 
 consul_client = consul.Consul(host="consul-server")
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -17,8 +18,6 @@ def health():
     return app.response_class(status=200)
 
 @app.route('/messages', methods=['GET'])
-
-
 def message():
     global msg
     if len(msg) == 0:
@@ -29,8 +28,6 @@ def message():
     return ','.join(wiped_msg)
     
 def queue():
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
-    connection.start()
     channel = connection.channel()
     queue = get_key_value(consul_client, "queue")
     channel.queue_declare(queue=queue)
@@ -71,10 +68,5 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0",
             port=port,
             debug=False)
+    connection.close()
 
-
-# if __name__ == '__main__':
-#     queue_thread = threading.Thread(target = queue)
-#     queue_thread.start()
-#     app.run(host='0.0.0.0', port='8021')
-    
