@@ -70,3 +70,9 @@ docker-compose up --build facade_service logging_service_1 logging_service_2 log
 
 
 
+
+Тестові повідомлення: надходять і до logging, і до message:
+
+<img width="1041" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/5dcefe1d-ac6c-4ea7-b994-f58f03c00f21">
+<img width="1146" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/200b9ee3-e594-43e8-b14d-c34972bacdec">
+
