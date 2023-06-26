@@ -114,7 +114,6 @@ def facade_serv():
 if __name__ == '__main__':
     port = 8000
     consul_client = consul.Consul(host="consul-server")
-    connection.start()
     register(consul_client, port)
     app.run(host="0.0.0.0",
             port=port,
