@@ -10,7 +10,7 @@ app.config["DEBUG"] = True
 def health():
     return app.response_class(status=200)
 
-@app.route('/logging', methods=['GET', 'POST'])
+@app.route('/logging-service', methods=['GET', 'POST'])
 def logging_serv():
     if flask.request.method == 'GET':
         return forward_get()
@@ -39,22 +39,21 @@ def forward_get():
         raise ex
         return 400
 
+def get_key_value(c, name):
+    return c.kv.get(name)[1]['Value'].decode()[1:-1]
+
 def register(consul_client, service_id, port):
     check_http = consul.Check.http(f'http://logging_service_{service_id}:{port}/health', interval='10s')
     consul_client.agent.service.register(
         'logging_service',
-        service_id=f'logging_service_{service_id}',
+        service_id=f"logging_service_{service_id}",
         address=f"logging_service_{service_id}",
         port=port,
         check=check_http,)
 
-    
-def get_key_value(c, name):
-    return c.kv.get(name)[1]['Value'].decode()[1:-1]
-
 if __name__ == '__main__':
-    service_id = int(sys.argv[1])
     port = 8011
+    service_id = int(sys.argv[1])
     consul_client = consul.Consul(host="consul-server")
     client = hazelcast.HazelcastClient(
         cluster_members=get_key_value(consul_client, "hazelcast_addrs").split(',')
