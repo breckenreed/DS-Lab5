@@ -17,7 +17,7 @@ app.config["DEBUG"] = True
 def health():
     return app.response_class(status=200)
 
-@app.route('/messages', methods=['GET'])
+@app.route('/messages-service', methods=['GET'])
 def message():
     global msg
     if len(msg) == 0:
