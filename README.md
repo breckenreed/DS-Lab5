@@ -1,4 +1,4 @@
-<img width="1226" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/0ac4a849-a543-48f3-9420-2167c3acca85"># DS-Lab5
+# DS-Lab5
 Consul
 
 
@@ -25,7 +25,8 @@ consul kv put rabbit_host "rabbitmq"
 ```
 <img width="501" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/fd7e99e4-4d23-4b46-820e-964be6272ab0"> <br />
 
-<img width="715" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/8681f8e1-ce08-45c9-8d08-e9316bd96068"> <br />
+<img width="1165" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/dde8e61b-9856-47da-8bc4-1dd6a8fef740">
+
 
 Далі у рут-фолдері: <br />
 
@@ -49,17 +50,15 @@ docker-compose up --build facade_service logging_service_1 logging_service_2 log
 
 ``facade_service.py``: <br />
 
-<img width="514" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/6b1936d0-3e14-4134-af77-459020adcadf"> <br />
+<img width="497" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/df4ec117-ed81-4cb9-97f9-855694a16edd"> <br />
+<img width="331" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/95f71dd0-a2d6-45dc-8368-6a8df6bfe992"> <br />
+<img width="403" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/6a5ee8f9-17eb-4efa-958c-e3d457dd2638"> <br />
 
 ``logging_service.py`` <br />
-
-<img width="681" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/ab5abd68-5d6a-442c-a657-a99b7f7b9192"> <br />
+<img width="606" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/948202da-e238-4993-a35e-13bd6206ccf3">
 
 ``message_service.py`` <br />
-
-<img width="561" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/5cca48d3-a5d6-4f5a-b2a5-9ae263f1dfe8"> <br />
-<img width="690" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/68923503-85e0-4a7a-822f-2cf7eacf52f0"> <br />
-
+<img width="722" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/3f34a06a-f8cb-42c8-bf46-de8d404acbd1">
 
 
 Налаштування для клієнтів Hazelcast мають зберігатись як key/value у Consul і зчитуватись logging-service <br />
@@ -69,31 +68,35 @@ docker-compose up --build facade_service logging_service_1 logging_service_2 log
 
 
 
-
-
 Тестові повідомлення: надходять і до logging, і до message: <br />
+<img width="1021" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/f7207b3a-bc79-4c1d-86a9-a03db1a188ab"> <br />
+<img width="1028" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/a186c57c-9f9d-4671-82a2-8372c3aa36f6"> <br />
 
-<img width="1119" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/9faec198-504f-4833-a3ad-a22b1b503886"> <br />
-<img width="1115" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/1e8dfa43-e0fb-4769-9c1d-9326a67cab10"> <br />
-<img width="1134" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/815a46b7-2b9e-4e07-898f-614bc19df2a4"> <br />
+Та повертаються з обох мікросервісів через GET <br />
+<img width="1143" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/3405e12f-2ed5-4406-aa2b-6eb554664966"> <br />
+
+
+
 
 
 Контейнер ``lab5-final-facade_service-1`` <br />
-<img width="707" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/86b65aad-7d47-4878-99cc-dcbed5e8df86"> <br />
+<img width="879" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/d4dc0d82-21fa-423c-a1e3-b704fa853733">  <br />
+<img width="1387" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/a4871122-b80b-42af-9b28-3efc918bd9c6">  <br />
 
-Контейнер ``lab5-final-logging_service_1-1``
-<img width="1149" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/f952ec0d-8fdb-4ce6-b790-eb655d71930c"> <br />
+
+Контейнер ``lab5-final-logging_service_1-1``  <br />
+<img width="1385" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/e9fe9cee-1fd6-4107-81dd-645d6bfc7972"> <br />
 
 Контейнер ``lab5-final-logging_service_2-1``
-<img width="1157" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/1e7210ce-3a6c-4cd7-afd5-a6dacd7b5d0b"> <br />
+<img width="878" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/89ac45bf-6829-45ec-824a-43b5ebb2b8ef"> <br />
 
 Контейнер ``lab5-final-logging_service_3-1``
-<img width="1170" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/e4ad4980-ae9c-4504-9528-e8802fe5ab4d"> <br />
+<img width="856" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/a058c165-82c9-4b2d-bd21-95842afe858e"> <br />
 
 Контейнер ``lab5-final-messages_service_1-1``
-<img width="1224" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/01fd9f19-654d-4daa-b48e-f3e801ad182d"> <br />
+<img width="789" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/09983f56-1f0e-41c2-85f3-b4393eec82c3"> <br />
 
 Контейнер ``lab5-final-messages_service_2-1``
-<img width="1226" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/22e948a2-fe21-405c-990f-57a0d9e5c185"> <br />
+<img width="916" alt="image" src="https://github.com/breckenreed/DS-Lab5/assets/62158298/bb7d319c-1bd4-4ae3-a68d-62cd7dd148fc"> <br />
 
 
